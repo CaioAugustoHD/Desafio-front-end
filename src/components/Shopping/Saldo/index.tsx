@@ -1,6 +1,6 @@
 export function Saldo() {
     return (
-        <section className="">
+        <section className="position-absolute bottom-0 bg-white w-100">
             <div>
                 <span>Total</span>
                 <span>R$ 40,00</span>

@@ -11,7 +11,7 @@ export function Shopping() {
                     <button type="button" className="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#offcanvasResponsive" aria-label="Close"></button>
                 </div>
                 <hr/>
-                <div className="offcanvas-body d-flex flex-column align-items-center">
+                <div className="offcanvas-body d-flex flex-column align-items-center position-relative">
                     <img className="img-fluid w-75" src={logo} alt="Private Code" />
                     <ProductsTable />
                     <Saldo />
