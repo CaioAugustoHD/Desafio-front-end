@@ -9,6 +9,7 @@ export function Header() {
                         <img className="h-75" src={searchIcon} />
                     </button>
                 </form>
+                <button className="btn btn-primary d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasResponsive" aria-controls="offcanvasResponsive">cart</button>
             </header>
     )
 }
