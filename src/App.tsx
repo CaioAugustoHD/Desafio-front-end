@@ -4,8 +4,11 @@ import { Menu } from "./components/Menu";
 import { Shopping } from "./components/Shopping";
 
 export function App() {
+  const divStyle = {
+    backgroundColor: "#F0F4F5"
+  }
   return (
-    <div className="row">
+    <div className="row"  style={divStyle}>
       <div className="col-12 col-lg-8">
         <Header />
         <Menu />
