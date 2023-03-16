@@ -8,13 +8,13 @@ export function App() {
     backgroundColor: "#F0F4F5"
   }
   return (
-    <div className="row"  style={divStyle}>
-      <div className="col-12 col-lg-8">
+    <div className="row h-100"  style={divStyle}>
+      <div className="col-12 col-lg-8 pe-0">
         <Header />
         <Menu />
         <Footer />
       </div>
-      <div className="col-4">
+      <div className="col-4 ps-0 bg-white h-100">
         <Shopping />
       </div>
     </div>

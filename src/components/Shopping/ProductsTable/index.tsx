@@ -1,7 +1,7 @@
 export function ProductsTable() {
     return (
-        <table className="table">
-            <thead>
+        <table className="table table-striped">
+            <thead className="border-top">
                 <tr>
                     <th scope="col">Produto</th>
                     <th scope="col">Valor</th>
