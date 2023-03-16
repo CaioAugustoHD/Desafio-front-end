@@ -9,7 +9,7 @@ export function App() {
   }
   return (
     <div className="row h-100"  style={divStyle}>
-      <div className="col-12 col-lg-8 pe-0">
+      <div className="col-12 col-lg-8 pe-0 d-flex flex-column justify-content-between">
         <Header />
         <Menu />
         <Footer />
