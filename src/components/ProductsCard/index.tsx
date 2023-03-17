@@ -7,7 +7,11 @@ import left from "../../assets/left.svg"
 import { ProductModal } from "../modals/ProductModal"
 import { ModalDataContext } from "../contexts/ModalDataContext"
 
-export function ProductsCard() {
+interface ProductsCardProps {
+    productsCategory: number
+}
+
+export function ProductsCard(props: ProductsCardProps) {
     const { modalData, setModalData } = useContext(ModalDataContext)
 
     const [matchesMD, setMatchesMD] = useState(
@@ -18,13 +22,17 @@ export function ProductsCard() {
         window.matchMedia("(min-width: 576px)").matches
     );
 
+    const filteredProducts = props.productsCategory == 0
+        ? products.products
+        : products.products.filter(product => product.category_id == props.productsCategory)
+
     const [currentPage, setCurrentPage] = useState(0)
 
     const itensPerPage = matchesMD ? 5 : matchesSM ? 4 : 2
-    const pages = Math.ceil(products.products.length / itensPerPage)
+    const pages = Math.ceil(filteredProducts.length / itensPerPage)
     const startIndex = currentPage * itensPerPage
     const endIndex = startIndex + itensPerPage
-    const currentItens = products.products.slice(startIndex, endIndex)
+    const currentItens = filteredProducts.slice(startIndex, endIndex)
 
     useEffect(() => {
         window
