@@ -1,3 +1,4 @@
+import { Counter } from '../../../Counter'
 import './style.css'
 
 export function Table() {
@@ -14,22 +15,22 @@ export function Table() {
                 <tr>
                     <td scope="row">Calabresa</td>
                     <td>R$ 40,00</td>
-                    <td>d</td>
+                    <td><Counter/></td>
                 </tr>
                 <tr>
                     <td scope="row">Sensação</td>
                     <td>R$ 40,00</td>
-                    <td>@fat</td>
+                    <td><Counter/></td>
                 </tr>
                 <tr>
-                    <td scope="row">Frango/catupiry</td>
+                    <td scope="row">Frango c/catupiry</td>
                     <td>R$ 40,00</td>
-                    <td>@twitter</td>
+                    <td><Counter/></td>
                 </tr>
                 <tr>
-                    <td scope="row">Frango/catupiry</td>
+                    <td scope="row">Calabresa c/bacon</td>
                     <td>R$ 40,00</td>
-                    <td>@twitter</td>
+                    <td><Counter/></td>
                 </tr>
             </tbody>
         </table>
