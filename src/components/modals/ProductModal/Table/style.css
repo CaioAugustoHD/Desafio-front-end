@@ -1,0 +1,25 @@
+.modalTable {
+    color: #696969 !important; 
+    font-weight: 700;
+    font-size: 13px;
+    border-top: 1px solid #EBEBEB;
+}
+
+.modalTable tbody tr td:first-child {
+    font-weight: 600;
+}
+
+.modalTable tr:nth-child(odd){
+    background-color: #F9F9F9;
+}
+
+.modalTable thead tr th {
+    background-color: #FFF;
+}
+
+.modalTable tr th, .modalTable tr td {
+    padding: 20px 10px;
+}
+.modalTable tr th:last-child, .modalTable tr td:last-child {
+    text-align: end;
+}
