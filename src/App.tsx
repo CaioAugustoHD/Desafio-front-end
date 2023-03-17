@@ -5,13 +5,12 @@ import { Menu } from "./components/Menu";
 import { Shopping } from "./components/Shopping";
 
 export function App() {
+
+  const [searchProducts, setSearchProducts] = useState('') 
+
   const [matches, setMatches] = useState(
     window.matchMedia("(min-width: 992px)").matches
   );
-
-  const divStyle = {
-    backgroundColor: "#F0F4F5"
-  }
 
   useEffect(() => {
     window
@@ -20,10 +19,10 @@ export function App() {
   }, []);
 
   return (
-    <div className="row h-100"  style={divStyle}>
+    <div className="row h-100"  style={{backgroundColor: "#F0F4F5"}}>
       <div className="col-12 col-lg-8 pe-0 d-flex flex-column justify-content-between">
-        <Header />
-        <Menu />
+        <Header setSearchProducts={setSearchProducts}/>
+        <Menu searchProducts={searchProducts}/>
         <Footer />
       </div>
       {matches ?

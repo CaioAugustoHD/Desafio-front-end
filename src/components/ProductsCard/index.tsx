@@ -9,6 +9,7 @@ import { ModalDataContext } from "../contexts/ModalDataContext"
 
 interface ProductsCardProps {
     productsCategory: number
+    searchProducts: string
 }
 
 export function ProductsCard(props: ProductsCardProps) {
@@ -22,9 +23,11 @@ export function ProductsCard(props: ProductsCardProps) {
         window.matchMedia("(min-width: 576px)").matches
     );
 
-    const filteredProducts = props.productsCategory == 0
+    const selectedCategory = props.productsCategory == 0
         ? products.products
         : products.products.filter(product => product.category_id == props.productsCategory)
+    
+    const filteredProducts = selectedCategory.filter(product => product.name.toLowerCase().includes(props.searchProducts.toLowerCase()))
 
     const [currentPage, setCurrentPage] = useState(0)
 
