@@ -1,12 +1,13 @@
 import logo from "../../assets/logo.svg"
+import { FormModal } from "../modals/FormModal"
 import { ProductsTable } from "./ProductsTable"
 import { Saldo } from "./Saldo"
 
 export function Shopping() {
     const breakStyle = {
         marginTop: "90px",
-        width: "92%"
-        // color: "#EBEBEB"
+        width: "92%",
+        color: "#EBEBEB"
     }
 
     return (
@@ -20,6 +21,7 @@ export function Shopping() {
                 </div>
             </div>
 
+            <FormModal />
 
         </>
     )

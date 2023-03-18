@@ -30,7 +30,7 @@ export function Saldo() {
                 <span className="fw-bold" style={{color: "#2c9a44"}}>R$ 40,00</span>
             </div>
             <div className="d-flex justify-content-evenly align-items-center" style={buttonsContainerStyle}>
-                <button className="btn btn-primary text-white col-4 py-3">
+                <button type="button" className="btn btn-primary text-white col-4 py-3" data-bs-toggle="modal" data-bs-target="#formModal">
                     <img style={imgStyle} src={check} />
                     Finalizar
                 </button>
