@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useForm } from "react-hook-form"
 import "./style.css"
 
 const cepInput = document.getElementById('cepInput') as HTMLInputElement
@@ -11,34 +12,46 @@ const refInput = document.getElementById('refInput') as HTMLInputElement
 
 export function FormModal() {
 
-    const [apiResponse, setApiResponse] = useState({})
-    const [cep, setCEP] = useState("");
-
+    const { setValue, handleSubmit, register, setFocus, formState: { errors } } = useForm()
+    
     function clearForm() {
-        cepInput.value = ''
-        bairroInput.value = ''
-        numeroInput.value = ''
-        cidadeInput.value = ''
-        estadoInput.value = ''
-        complementoInput.value = ''
-        refInput.value = ''
+        setValue('bairroInput', '')
+        setValue('cidadeInput', '')
+        setValue('estadoInput', '')
+        setValue('cepInput', '')
+        setValue('numeroInput', '')
+        setValue('complementoInput', '')
+        setValue('refInput', '')
+
     }
 
-    function maskCEP(value: string) {
-        return value.replace(/\D/g, "").replace(/^(\d{5})(\d{3})+?$/, "$1-$2");
+    function maskNumber(value: string) {
+        return value.replace(/\D/g, "")
     }
 
     async function ApiFetch(cep: string) {
         console.log(cep)
-    
+
         fetch(`https://viacep.com.br/ws/${Number(cep)}/json/`)
             .then(response => response.json())
             .then(data => {
-                data.erro ? alert('CEP não encontrado') : console.log(data)
-                setApiResponse(data)
-            })
+                if(data.erro){
+                     alert('CEP não encontrado')
+                     setFocus('cepInput')
+                } else {
+                    setValue('bairroInput', data.bairro)
+                    setValue('cidadeInput', data.localidade)
+                    setValue('estadoInput', data.uf)
+                    setFocus('bairroInput')
+                }
 
-        .catch(() => alert('CEP não encontrado'))        
+            })
+        .catch(() => console.log('CEP não encontrado'))
+    }
+
+    function onSubmit(data) {
+        console.log(data)
+        clearForm()
     }
 
     return (
@@ -47,7 +60,8 @@ export function FormModal() {
                 <div className="modal-content">
                     <button type="button" className="btn-close position-absolute end-0 me-3 mt-3" data-bs-dismiss="modal" aria-label="Close"></button>
                     <div className="modal-body mt-5 px-sm-5">
-                        <form className="row formModalStyle">
+
+                        <form className="row formModalStyle" onSubmit={handleSubmit(onSubmit)}>
                             <div className="mb-3">
                                 <label htmlFor="entregaInput" className="form-label">Forma de Entrega</label>
                                 <select className="form-select" aria-label="Default select example" id="entregaInput">
@@ -56,45 +70,45 @@ export function FormModal() {
                             </div>
                             <div className="mb-3 col-4">
                                 <label htmlFor="cepInput" className="form-label">CEP</label>
-                                <input 
+                                <input
+                                    {...register('cepInput', { required: true })}
                                     type="text"
-                                    maxLength={9}
+                                    maxLength={8}
                                     className="form-control"
                                     id="cepInput"
                                     placeholder="CEP"
-                                    value={cep}
-                                    onChange={(e) => setCEP(maskCEP(e.target.value))}
+                                    onChange={(e) => setValue('cepInput', maskNumber(e.target.value))}
                                     onInput={(e) => (e.target as HTMLInputElement).value.length == 8 ? ApiFetch((e.target as HTMLInputElement).value) : null}
                                 />
                             </div>
                             <div className="mb-3 col-8">
                                 <label htmlFor="bairroInput" className="form-label">Bairro</label>
-                                <input type="text" className="form-control" id="bairroInput" placeholder="Digite seu bairro" />
-                            </div>                            
+                                <input {...register('bairroInput')} type="text" className="form-control" id="bairroInput" placeholder="Digite seu bairro" />
+                            </div>
                             <div className="mb-3 col-4">
                                 <label htmlFor="numberInput" className="form-label">Número</label>
-                                <input type="text" className="form-control" id="numberInput" placeholder="Número" />
+                                <input {...register('numeroInput')} type="text" className="form-control" id="numberInput" placeholder="Número" />
                             </div>
                             <div className="mb-3 col-8">
                                 <label htmlFor="cidadeInput" className="form-label">Cidade</label>
-                                <input type="text" className="form-control" id="cidadeInput" placeholder="Cidade" />
+                                <input {...register('cidadeInput')} type="text" className="form-control" id="cidadeInput" placeholder="Cidade" />
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="estadoInput" className="form-label">Estado</label>
-                                <input type="text" className="form-control" id="estadoInput" placeholder="Estado" />
+                                <input {...register('estadoInput')} type="text" className="form-control" id="estadoInput" placeholder="Estado" />
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="complementoInput" className="form-label">Complemento</label>
-                                <input type="text" className="form-control" id="complementoInput" placeholder="Complemento" />
+                                <input {...register('complementoInput')} type="text" className="form-control" id="complementoInput" placeholder="Complemento" />
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="refInput" className="form-label">Referência</label>
-                                <input type="text" className="form-control" id="refInput" placeholder="Referência" />
+                                <input {...register('refInput')} type="text" className="form-control" id="refInput" placeholder="Referência" />
+                            </div>
+                            <div className="modal-footer border-0 mx-sm-4 pt-0 pb-4">
+                                <button type="submit" className="btn btn-primary btnFormModal w-100 text-white p-3 fs-5 my-0" data-bs-dismiss="modal">Continuar</button>
                             </div>
                         </form>
-                    </div>
-                    <div className="modal-footer border-0 mx-sm-4 pt-0 pb-4">
-                        <button onClick={clearForm} type="button" className="btn btn-primary btnFormModal w-100 text-white p-3 fs-5 my-0" data-bs-dismiss="modal">Continuar</button>
                     </div>
                 </div>
             </div>
