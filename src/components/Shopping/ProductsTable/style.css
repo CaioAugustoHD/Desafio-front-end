@@ -1,0 +1,32 @@
+.shoppingTable {
+    font-weight: 700;
+    font-size: 13px;
+    border-top: 1px solid #EBEBEB;
+}
+
+.shoppingTable tbody tr td:first-child {
+    font-weight: 600;
+}
+
+.shoppingTable tr:nth-child(odd){
+    background-color: #F9F9F9;
+}
+
+.shoppingTable thead tr th {
+    background-color: #FFF;
+    padding: 10px;
+}
+
+.shoppingTable tr th, .shoppingTable tr td {
+    padding: 20px 10px;
+    vertical-align: middle;
+    color: #696969 !important
+}
+
+.shoppingTable tr td p {
+    margin: 0;
+}
+
+.shoppingTable tr th:last-child, .shoppingTable tr td:last-child {
+    text-align: end;
+}

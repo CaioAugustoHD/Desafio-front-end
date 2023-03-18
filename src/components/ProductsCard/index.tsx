@@ -6,7 +6,6 @@ import right from "../../assets/right.svg"
 import left from "../../assets/left.svg"
 import { ProductModal } from "../modals/ProductModal"
 import { ModalDataContext } from "../contexts/ModalDataContext"
-import { CartProvider } from "../contexts/CartContext"
 
 interface ProductsCardProps {
     productsCategory: number
@@ -76,9 +75,7 @@ export function ProductsCard(props: ProductsCardProps) {
                     </ul>
                 </div>
             </section>
-            <CartProvider>
-                <ProductModal product={modalData} />
-            </CartProvider>
+            <ProductModal product={modalData} />
         </>
     )
 }

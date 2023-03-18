@@ -14,13 +14,15 @@ interface ProductType {
 interface defaultType {
     addItemsToCart(selectedProduct: ProductType): void,
     removeItemsToCart(selectedProduct: ProductType): void,
-    cartProducts: ProductType[]
+    cartProducts: ProductType[],
+    format(price: number): string
 }
 
 const DEFAULT_VALUE = {
     addItemsToCart: () => {},
     removeItemsToCart: () => {},
-    cartProducts: []
+    cartProducts: [],
+    format: () => ""
 }
 
 export const CartContext = createContext<defaultType>(DEFAULT_VALUE)
@@ -51,9 +53,15 @@ export function CartProvider({ children }: {children: ReactNode}) {
         }
     }
 
-    console.log("carrinho ->", cartProducts)
+    function format(price: number) {
+        return price.toLocaleString('pt-br',{
+            style: 'currency',
+            currency: 'BRL'
+        })
+    }
+
     return (
-        <CartContext.Provider value={{addItemsToCart, removeItemsToCart, cartProducts}}>
+        <CartContext.Provider value={{addItemsToCart, removeItemsToCart, cartProducts, format}}>
             {children}
         </CartContext.Provider>
     )

@@ -1,6 +1,13 @@
+import { useContext } from "react"
+import { CartContext } from "../../contexts/CartContext"
+import { Counter } from "../../Counter"
+import "./style.css"
+
 export function ProductsTable() {
+    const { cartProducts, format } = useContext(CartContext)
+
     return (
-        <table className="table table-striped">
+        <table className="table shoppingTable table-striped">
             <thead className="border-top">
                 <tr>
                     <th scope="col">Produto</th>
@@ -10,24 +17,17 @@ export function ProductsTable() {
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td scope="row">
-                        <p>Hamburguer</p>
-                        <p>Sem pão</p>
-                    </td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <td scope="row">
-                        <p>Hamburguer</p>
-                        <p>Sem pão</p>
-                    </td>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
+                {cartProducts.map(product => {
+                    return <tr>
+                        <td scope="row">
+                            <p>{product.name}</p>
+                            {product.details}
+                        </td>
+                        <td>{format(product.price)}</td>
+                        <td><Counter product={product} /></td>
+                        <td>40</td>
+                    </tr>
+                })}
             </tbody>
         </table>
     )
