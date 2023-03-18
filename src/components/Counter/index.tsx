@@ -7,6 +7,7 @@ interface CounterProps {
         name: string,
         price: number
     }
+    isCart: boolean
 }
 
 //                   TIPAR FUNÇÃO
@@ -21,17 +22,18 @@ interface DataType {
 export function Counter(props: CounterProps) {
 
     const { addItemsToCart, removeItemsToCart } = useContext(CartContext)
-    const [quantity, setQuantity] = useState(0)
+    const [quantity, setQuantity] = useState(props.isCart ? 1 : 0)
 
     function productDetails(e) {
-        const details = e.target.parentElement.parentElement.parentElement.children[0].textContent
+        const details = e.target.parentElement.parentElement.parentElement.children[0].lastChild.textContent
+        console.log(details)
         const orderId = e.target.parentElement.parentElement.parentElement.children[0].id
         const quantity = 0
         return {details, orderId, quantity}
     }
 
     useEffect(() => {
-        setQuantity(0)
+        setQuantity(props.isCart ? 1 : 0)
     },[props.product])
 
     return (

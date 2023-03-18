@@ -20,6 +20,11 @@
 .modalTable tr th, .modalTable tr td {
     padding: 20px 10px;
 }
+
+.modalTable tr td p {
+    margin: 0;
+}
+
 .modalTable tr th:last-child, .modalTable tr td:last-child {
     text-align: end;
 }
