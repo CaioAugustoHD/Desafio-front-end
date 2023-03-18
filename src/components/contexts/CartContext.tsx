@@ -12,15 +12,15 @@ interface ProductType {
 
 
 interface defaultType {
-    addItemsToCart(selectedProduct: ProductType): void,
-    removeItemsToCart(selectedProduct: ProductType): void,
+    addItemsToCart(selectedProduct: ProductType): number,
+    removeItemsToCart(selectedProduct: ProductType): number,
     cartProducts: ProductType[],
-    format(price: number): string
+    format(price: number): string,
 }
 
 const DEFAULT_VALUE = {
-    addItemsToCart: () => {},
-    removeItemsToCart: () => {},
+    addItemsToCart: () => 0,
+    removeItemsToCart: () => 0,
     cartProducts: [],
     format: () => ""
 }
@@ -34,10 +34,15 @@ export function CartProvider({ children }: {children: ReactNode}) {
         const copyCartProducts = [...cartProducts]
         const item = copyCartProducts.find(product => product.orderId == selectedProduct.orderId && product.id === selectedProduct.id)
 
-        item ? item.quantity = item.quantity + 1
-        : copyCartProducts.push({ id: selectedProduct.id, name: selectedProduct.name, price: selectedProduct.price, details: selectedProduct.details, orderId: selectedProduct.orderId, quantity: 1})
-    
+        if(item) {
+            item.quantity = item.quantity + 1
+            setCartProducts(copyCartProducts)
+            return item.quantity
+        } else {
+        copyCartProducts.push({ id: selectedProduct.id, name: selectedProduct.name, price: selectedProduct.price, details: selectedProduct.details, orderId: selectedProduct.orderId, quantity: 1})
         setCartProducts(copyCartProducts)
+        return 1
+        }
     }
 
     function removeItemsToCart(selectedProduct: ProductType) {
@@ -47,9 +52,11 @@ export function CartProvider({ children }: {children: ReactNode}) {
         if(item && item.quantity > 1) {
             item.quantity = item.quantity - 1
             setCartProducts(copyCartProducts)
+            return item.quantity
         } else {
             const newCopyCartProducts = copyCartProducts.filter(product => product.orderId !== selectedProduct.orderId || product.id !== selectedProduct.id)
             setCartProducts(newCopyCartProducts)
+            return 0
         }
     }
 

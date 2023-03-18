@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 import { CartContext } from "../contexts/CartContext"
 
 interface CounterProps {
@@ -20,7 +20,8 @@ interface DataType {
 
 export function Counter(props: CounterProps) {
 
-    const { addItemsToCart, removeItemsToCart, cartProducts } = useContext(CartContext)
+    const { addItemsToCart, removeItemsToCart } = useContext(CartContext)
+    const [quantity, setQuantity] = useState(0)
 
     function productDetails(e) {
         const details = e.target.parentElement.parentElement.parentElement.children[0].textContent
@@ -29,12 +30,17 @@ export function Counter(props: CounterProps) {
         return {details, orderId, quantity}
     }
 
+    useEffect(() => {
+        setQuantity(0)
+    },[props.product])
+
     return (
         <div>
             <button
                 onClick={(e) => {
                     const data = productDetails(e)
-                    removeItemsToCart(Object.assign(props.product, data))                    
+                    const q = removeItemsToCart(Object.assign(props.product, data))
+                    setQuantity(q)                 
                 }}
                 className="btn btn-sm p-0 rounded-circle"
                 style={{
@@ -47,13 +53,14 @@ export function Counter(props: CounterProps) {
             >-</button>
             
             <span className="mx-2">
-                0
+                {quantity}
             </span>
 
             <button
                 onClick={(e) => {
                     const data = productDetails(e)
-                    addItemsToCart(Object.assign(props.product, data))                    
+                    const q = addItemsToCart(Object.assign(props.product, data))
+                    setQuantity(q)                  
                 }}
                 className="btn btn-sm btn-primary p-0 rounded-circle"
                 style={{

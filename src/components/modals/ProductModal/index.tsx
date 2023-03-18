@@ -41,7 +41,7 @@ export function ProductModal(props: ProductModalProps) {
                                     <span className="fw-bold" style={{ color: "#2c9a44" }}>R$ 40,00</span>
                                 </div>
                                 <div className="d-flex justify-content-evenly align-items-center py-4">
-                                    <button className="btn btn-primary text-white col-10 py-3">
+                                    <button className="btn btn-primary text-white col-10 py-3" data-bs-dismiss="modal" aria-label="Close">
                                         Adicionar
                                     </button>
                                 </div>

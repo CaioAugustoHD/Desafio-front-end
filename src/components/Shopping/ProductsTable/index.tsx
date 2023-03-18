@@ -18,7 +18,7 @@ export function ProductsTable() {
             </thead>
             <tbody>
                 {cartProducts.map(product => {
-                    return <tr>
+                    return <tr key={product.orderId+product.id}>
                         <td scope="row">
                             <p>{product.name}</p>
                             {product.details}
