@@ -28,7 +28,7 @@ const defaultValue = {
 
 export const ModalDataContext = createContext<ContextType>(defaultValue)
 
-export function ModalDataProvider({ children }: any) {
+export function ModalDataProvider({ children }: {children: ReactNode}) {
 
     const [modalData, setModalData] = useState(defaultValue.modalData)
 

@@ -34,7 +34,7 @@ export function ProductModal(props: ProductModalProps) {
                                     <span>{props.product.price}</span>
                                 </div>
                             </div>
-                            <Table category_id={props.product.category_id} price={props.product.price} />
+                            <Table product={props.product} />
                             <section className="bg-white w-100">
                                 <div className="d-flex justify-content-between px-3 py-3 fs-5" style={{borderTop: "1px solid #EBEBEB", borderBottom: "1px solid #EBEBEB"}}>
                                     <span className="fw-bold" style={{ color: "#696969" }}>Total</span>
