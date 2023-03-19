@@ -40,7 +40,7 @@ export function Counter(props: CounterProps) {
     }
 
     useEffect(() => {
-        setQuantity(props.isCart ? props.cartProduct?.quantity : 0)
+        setQuantity(props.isCart ? props.cartProduct?.quantity : quantity)
     },[props])
 
     return (
@@ -53,7 +53,6 @@ export function Counter(props: CounterProps) {
                     } else {
                         const data = productDetails(e)
                         const q = removeItemsToCart(Object.assign(props.newProduct, data))
-                        
                         setQuantity(q) 
                     }                
                 }}
@@ -75,7 +74,7 @@ export function Counter(props: CounterProps) {
                 onClick={(e) => {
                     if(props.cartProduct){
                         const q = increaseQuantity(props.cartProduct)
-                        console.log('essa é a q', q)
+                        props.cartProduct.quantity = q
                         setQuantity(q)
                     } else {
                         const data = productDetails(e)
