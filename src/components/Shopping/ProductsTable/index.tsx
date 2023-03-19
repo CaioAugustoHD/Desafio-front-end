@@ -25,7 +25,7 @@ export function ProductsTable() {
                         </td>
                         <td>{format(product.price)}</td>
                         <td><Counter cartProduct={product} isCart={true} /></td>
-                        <td>40</td>
+                        <td>{format(product.price * product.quantity)}</td>
                     </tr>
                 })}
             </tbody>
