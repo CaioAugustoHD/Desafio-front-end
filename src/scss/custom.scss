@@ -1,7 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900&display=swap');
+
 html, body, #root {
     height: 100%;
 }
 
+$font-family-base: 'Nunito', sans-serif;
+$font-size-base: 1rem;
 $primary: #E83737;
 
 @import "../node_modules/bootstrap/scss/bootstrap";
