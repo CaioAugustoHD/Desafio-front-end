@@ -1,12 +1,14 @@
 import { useContext } from "react"
 import { CartContext } from "../../contexts/CartContext"
 import { Counter } from "../../Counter"
+import { Saldo } from "./Saldo"
 import "./style.css"
 
 export function ProductsTable() {
     const { cartProducts, format } = useContext(CartContext)
 
     return (
+        <div className="d-flex flex-column justify-content-between w-100" style={{height: "551px"}}>
         <table className="table shoppingTable table-striped">
             <thead className="border-top">
                 <tr>
@@ -30,5 +32,7 @@ export function ProductsTable() {
                 })}
             </tbody>
         </table>
+            <Saldo />
+            </div>
     )
 }

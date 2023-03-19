@@ -1,12 +1,12 @@
 import { useContext } from "react"
-import check from "../../../assets/check.svg"
-import x from "../../../assets/x.svg"
-import { CartContext } from "../../contexts/CartContext"
+import check from "../../../../assets/check.svg"
+import x from "../../../../assets/x.svg"
+import { CartContext } from "../../../contexts/CartContext"
 
 export function Saldo() {
     const { sumCart, format } = useContext(CartContext)
     const sectionStyle = {
-        height: "125px",
+        height: "147px",
         borderTop: "1px solid #EBEBEB"
     }
 
@@ -27,12 +27,12 @@ export function Saldo() {
     }
 
     return (
-        <section style={sectionStyle} className="bg-white position-absolute bottom-0 w-100">
+        <section style={sectionStyle} className="bg-white w-100">
             <div className="d-flex justify-content-between px-5 pt-3 pb-3 pb-2 fs-5">
                 <span className="fw-bold" style={{ color: "#696969" }}>Total</span>
                 <span className="fw-bold" style={{ color: "#2c9a44" }}>{format(sumCart())}</span>
             </div>
-            <div className="d-flex justify-content-evenly align-items-center" style={buttonsContainerStyle}>
+            <div className="bg-white d-flex justify-content-evenly align-items-center" style={buttonsContainerStyle}>
                 <button type="button" className="btn btn-primary text-white col-4 py-3 border-0 rounded-1" data-bs-toggle="modal" data-bs-target="#formModal">
                     <img style={imgStyle} src={check} />
                     Finalizar
