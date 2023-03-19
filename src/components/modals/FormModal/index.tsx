@@ -1,19 +1,26 @@
-import { useState } from "react"
+import axios from "axios"
+import { useRef } from "react"
 import { useForm } from "react-hook-form"
 import "./style.css"
+import successImg from '../../../assets/successImg.png'
 
-const cepInput = document.getElementById('cepInput') as HTMLInputElement
-const bairroInput = document.getElementById('bairroInput') as HTMLInputElement
-const numeroInput = document.getElementById('numeroInput') as HTMLInputElement
-const cidadeInput = document.getElementById('cidadeInput') as HTMLInputElement
-const estadoInput = document.getElementById('estadoInput') as HTMLInputElement
-const complementoInput = document.getElementById('complementoInput') as HTMLInputElement
-const refInput = document.getElementById('refInput') as HTMLInputElement
+
+interface submitDataType {
+    bairroInput: string
+    cepInput: number,
+    cidadeInput: string,
+    complementoInput: string,
+    estadoInput: string,
+    numeroInput: number,
+    refInput: string
+}
 
 export function FormModal() {
 
     const { setValue, handleSubmit, register, setFocus, formState: { errors } } = useForm()
-    
+
+    const closeModalButtomRef = useRef<HTMLButtonElement>(null)
+
     function clearForm() {
         setValue('bairroInput', '')
         setValue('cidadeInput', '')
@@ -30,34 +37,46 @@ export function FormModal() {
     }
 
     async function ApiFetch(cep: string) {
-        console.log(cep)
-
-        fetch(`https://viacep.com.br/ws/${Number(cep)}/json/`)
-            .then(response => response.json())
-            .then(data => {
-                if(data.erro){
-                     alert('CEP não encontrado')
-                     setFocus('cepInput')
-                } else {
-                    setValue('bairroInput', data.bairro)
-                    setValue('cidadeInput', data.localidade)
-                    setValue('estadoInput', data.uf)
-                    setFocus('bairroInput')
-                }
-
-            })
-        .catch(() => console.log('CEP não encontrado'))
+        try {
+            const response = await axios.get(`https://viacep.com.br/ws/${Number(cep)}/json/`)
+            const data = response.data
+            if (data.erro) {
+                alert('CEP não encontrado')
+                setFocus('cepInput')
+            } else {
+                setValue('bairroInput', data.bairro)
+                setValue('cidadeInput', data.localidade)
+                setValue('estadoInput', data.uf)
+                setFocus('bairroInput')
+            }
+        } catch {
+            console.log('CEP não encontrado')
+        }
     }
 
-    function onSubmit(data) {
-        console.log(data)
-        clearForm()
+    async function onSubmit(submitData: submitDataType) {
+        console.log('ENVIADO p validar', submitData)
+        try {
+            const response = await axios.get(`https://viacep.com.br/ws/${Number(submitData.cepInput)}/json/`)
+            const data = response.data
+            if (data.erro) {
+                alert('CEP não encontrado')
+                setFocus('cepInput')
+            } else {
+                console.log('O SUBMIT PARA A API')
+                closeModalButtomRef.current?.click()
+                clearForm()
+            }
+        } catch {
+            alert('CEP não encontrado')
+        }
     }
 
     return (
+        <>
         <div className="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
             <div className="modal-dialog">
-                <div className="modal-content">
+                <div className="modal-content border border-white rounded" style={{ boxShadow: "0 3px 8px 0 #00000014" }}>
                     <button type="button" className="btn-close position-absolute end-0 me-3 mt-3" data-bs-dismiss="modal" aria-label="Close"></button>
                     <div className="modal-body mt-5 px-sm-5">
 
@@ -71,7 +90,7 @@ export function FormModal() {
                             <div className="mb-3 col-4">
                                 <label htmlFor="cepInput" className="form-label">CEP</label>
                                 <input
-                                    {...register('cepInput', { required: true })}
+                                    {...register('cepInput', { required: true, minLength: 8 })}
                                     type="text"
                                     maxLength={8}
                                     className="form-control"
@@ -105,13 +124,32 @@ export function FormModal() {
                                 <label htmlFor="refInput" className="form-label">Referência</label>
                                 <input {...register('refInput')} type="text" className="form-control" id="refInput" placeholder="Referência" />
                             </div>
-                            <div className="modal-footer border-0 mx-sm-4 pt-0 pb-4">
-                                <button type="submit" className="btn btn-primary btnFormModal w-100 text-white p-3 fs-5 my-0" data-bs-dismiss="modal">Continuar</button>
+                            <div className="modal-footer border-0 mx-0 mt-3 pt-0 pb-4">
+                                <button type="submit" className="btn btn-primary btnFormModal w-100 text-white p-3 fs-5 my-0" style={{ border: "1px solid #AFAFAF" }}>Continuar</button>
                             </div>
                         </form>
+
+                        {/* BOTÃO FICTÍCIO PARA FECHAR MODAL */}
+                        <button ref={closeModalButtomRef} className="d-none" data-bs-toggle="modal" data-bs-target="#successModal"></button>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div className="modal fade" id="successModal" tabIndex={-1} aria-labelledby="successModalLabel" aria-hidden="true">
+            <div className="modal-dialog modal-dialog-centered">
+                <div className="modal-content px-4 px-sm-5 py-3 border border-white m-auto" style={{boxShadow: "box-shadow: 0 2.9px 8px 0 #00000014",borderRadius: "6px", maxWidth: "450px"}}>
+                    <button type="button" className="btn-close position-absolute end-0 me-3" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div className="modal-body text-center mt-2">
+                        <img className='img-fluid w-75 m-auto' src={successImg} />
+                        <p className='fs-3 mb-0 fw-semibold' style={{color: "#0CAB2F"}}>Pedido Realizado Com Sucesso</p>
+                    </div>
+                    <div className="">
+                        <button type="button" className="btn btn-success w-100 py-3 border-0" style={{backgroundColor: "#0CAB2F"}} data-bs-dismiss="modal">Continuar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </>
     )
 }
