@@ -2,12 +2,20 @@ import { useContext, useEffect, useState } from "react"
 import { CartContext } from "../contexts/CartContext"
 
 interface CounterProps {
-    product: {
+    newProduct?: {
         id: number,
         name: string,
         price: number
     }
-    isCart: boolean
+    isCart: boolean,
+    cartProduct?: {
+        id: number,
+        name: string,
+        price: number,
+        orderId: number,
+        details: string,
+        quantity: number
+    }
 }
 
 //                   TIPAR FUNÇÃO
@@ -21,28 +29,33 @@ interface DataType {
 
 export function Counter(props: CounterProps) {
 
-    const { addItemsToCart, removeItemsToCart } = useContext(CartContext)
+    const { addItemsToCart, removeItemsToCart, increaseQuantity } = useContext(CartContext)
     const [quantity, setQuantity] = useState(props.isCart ? 1 : 0)
 
     function productDetails(e) {
         const details = e.target.parentElement.parentElement.parentElement.children[0].lastChild.textContent
-        console.log(details)
-        const orderId = e.target.parentElement.parentElement.parentElement.children[0].id
+        const orderId: number = Number(e.target.parentElement.parentElement.parentElement.children[0].id)
         const quantity = 0
         return {details, orderId, quantity}
     }
 
     useEffect(() => {
-        setQuantity(props.isCart ? 1 : 0)
-    },[props.product])
+        setQuantity(props.isCart ? props.cartProduct?.quantity : 0)
+    },[props])
 
     return (
         <div>
             <button
                 onClick={(e) => {
-                    const data = productDetails(e)
-                    const q = removeItemsToCart(Object.assign(props.product, data))
-                    setQuantity(q)                 
+                    if(props.cartProduct){
+                        const q = removeItemsToCart(props.cartProduct)
+                        setQuantity(q)
+                    } else {
+                        const data = productDetails(e)
+                        const q = removeItemsToCart(Object.assign(props.newProduct, data))
+                        
+                        setQuantity(q) 
+                    }                
                 }}
                 className="btn btn-sm p-0 rounded-circle"
                 style={{
@@ -60,9 +73,15 @@ export function Counter(props: CounterProps) {
 
             <button
                 onClick={(e) => {
-                    const data = productDetails(e)
-                    const q = addItemsToCart(Object.assign(props.product, data))
-                    setQuantity(q)                  
+                    if(props.cartProduct){
+                        const q = increaseQuantity(props.cartProduct)
+                        console.log('essa é a q', q)
+                        setQuantity(q)
+                    } else {
+                        const data = productDetails(e)
+                        const q = addItemsToCart(Object.assign(props.newProduct, data))
+                        setQuantity(q)
+                    }                 
                 }}
                 className="btn btn-sm btn-primary p-0 rounded-circle"
                 style={{

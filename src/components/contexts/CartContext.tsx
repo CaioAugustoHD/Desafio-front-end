@@ -16,13 +16,15 @@ interface defaultType {
     removeItemsToCart(selectedProduct: ProductType): number,
     cartProducts: ProductType[],
     format(price: number): string,
+    increaseQuantity(selectedProduct: ProductType): number
 }
 
 const DEFAULT_VALUE = {
     addItemsToCart: () => 0,
     removeItemsToCart: () => 0,
     cartProducts: [],
-    format: () => ""
+    format: () => "",
+    increaseQuantity: () => 0
 }
 
 export const CartContext = createContext<defaultType>(DEFAULT_VALUE)
@@ -60,15 +62,24 @@ export function CartProvider({ children }: {children: ReactNode}) {
         }
     }
 
+    function increaseQuantity(selectedProduct: ProductType) {
+        const copyCartProducts = [...cartProducts]
+        const item = copyCartProducts.find(product => product.orderId == selectedProduct.orderId && product.id === selectedProduct.id)
+
+        item && item.quantity + 1
+        setCartProducts(copyCartProducts)
+        return item?.quantity + 1
+    }
+
     function format(price: number) {
         return price.toLocaleString('pt-br',{
             style: 'currency',
             currency: 'BRL'
         })
     }
-
+    console.log('cart -> ', cartProducts)
     return (
-        <CartContext.Provider value={{addItemsToCart, removeItemsToCart, cartProducts, format}}>
+        <CartContext.Provider value={{addItemsToCart, removeItemsToCart, cartProducts, format, increaseQuantity}}>
             {children}
         </CartContext.Provider>
     )

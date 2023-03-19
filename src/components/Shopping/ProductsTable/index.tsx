@@ -19,12 +19,12 @@ export function ProductsTable() {
             <tbody>
                 {cartProducts.map(product => {
                     return <tr key={product.orderId+product.id}>
-                        <td scope="row">
+                        <td id={product.orderId.toString()} scope="row">
                             <p>{product.name}</p>
                             {product.details}
                         </td>
                         <td>{format(product.price)}</td>
-                        <td><Counter product={product} isCart={true} /></td>
+                        <td><Counter cartProduct={product} isCart={true} /></td>
                         <td>40</td>
                     </tr>
                 })}
