@@ -1,3 +1,5 @@
+import { useContext } from "react"
+import { CartContext } from "../../contexts/CartContext"
 import { Table } from "./Table"
 
 interface ProductModalProps {
@@ -12,6 +14,9 @@ interface ProductModalProps {
 }
 
 export function ProductModal(props: ProductModalProps) {
+
+    const { sumCart, format } = useContext(CartContext)
+
     return (
         <div className="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
             <div className="modal-dialog modal-dialog-centered modal-xl">
@@ -38,7 +43,7 @@ export function ProductModal(props: ProductModalProps) {
                             <section className="bg-white w-100">
                                 <div className="d-flex justify-content-between px-3 py-3 fs-5" style={{borderTop: "1px solid #EBEBEB", borderBottom: "1px solid #EBEBEB"}}>
                                     <span className="fw-bold" style={{ color: "#696969" }}>Total</span>
-                                    <span className="fw-bold" style={{ color: "#2c9a44" }}>R$ 40,00</span>
+                                    <span className="fw-bold" style={{ color: "#2c9a44" }}>{format(sumCart())}</span>
                                 </div>
                                 <div className="d-flex justify-content-evenly align-items-center py-4">
                                     <button className="btn btn-primary text-white col-10 py-3" data-bs-dismiss="modal" aria-label="Close">
