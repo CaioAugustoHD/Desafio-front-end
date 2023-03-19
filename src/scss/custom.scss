@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900&display=swap');
 
-html, body, #root {
+html,
+body,
+#root {
     height: 100%;
     overflow-x: hidden;
 }
@@ -12,5 +14,28 @@ $primary: #E83737;
 
 $border-radius: 6px;
 $border-radius-sm: 4px;
+
+/* BARRA SCROLL
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: $primary;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 3px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #E3E3E3;
+    ;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: $primary;
+    border-radius: 0;
+    border: none;
+}
 
 @import "../node_modules/bootstrap/scss/bootstrap";
