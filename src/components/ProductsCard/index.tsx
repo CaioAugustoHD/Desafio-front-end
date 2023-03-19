@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react"
+import { useCallback, useContext, useEffect, useState } from "react"
 import products from "../../../products.json"
 import { Card } from "./Card"
 
@@ -36,17 +36,22 @@ export function ProductsCard(props: ProductsCardProps) {
     const startIndex = currentPage * itensPerPage
     const endIndex = startIndex + itensPerPage
     const currentItens = filteredProducts.slice(startIndex, endIndex)
+    console.log('tem ', pages, ' paginas e eu to na ', currentPage+1)
+
+    useEffect(() => {
+        setCurrentPage(0)
+    }, [pages])
 
     useEffect(() => {
         window
             .matchMedia("(min-width: 768px)")
-            .addEventListener('change', e => setMatchesMD(e.matches));
+            .addEventListener('change', e => setMatchesMD(e.matches))
     }, []);
 
     useEffect(() => {
         window
             .matchMedia("(min-width: 576px)")
-            .addEventListener('change', e => setMatchesSM(e.matches));
+            .addEventListener('change', e => setMatchesSM(e.matches))
     }, []);
 
     return (
