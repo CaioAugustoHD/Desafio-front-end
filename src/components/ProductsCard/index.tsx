@@ -63,17 +63,17 @@ export function ProductsCard(props: ProductsCardProps) {
 
                 <div aria-label="Page navigation example">
                     <div className="position-absolute bottom-0 end-0 mb-3" style={{ marginRight: "7em" }}>
-                        <span style={{ color: "#696969" }}>Página <span className="bg-white px-4 py-1" style={{ color: "#9C9C9C", border: "1px solid #D1D1D1", borderRadius: "4px" }}>{currentPage + 1}</span> <span style={{ color: "#9C9C9C" }}>de {pages}</span> </span>
+                        <span style={{ color: "#696969" }}>Página <span className="bg-white px-4 py-1 rounded-1" style={{ color: "#9C9C9C", border: "1px solid #D1D1D1"}}>{currentPage + 1}</span> <span style={{ color: "#9C9C9C" }}>de {pages}</span> </span>
                     </div>
 
-                    <ul className="pagination position-absolute bottom-0 end-0 mx-4">
+                    <ul className="pagination position-absolute bottom-0 end-0 mx-4 mb-3">
                         <li className="page-item active ms-5">
-                            <button className="page-link pt-0 pb-1" aria-label="Previous" disabled={currentPage == 0} onClick={() => setCurrentPage(currentPage - 1)}>
+                            <button className="page-link pt-0 pb-1 border-0" aria-label="Previous" disabled={currentPage == 0} onClick={() => setCurrentPage(currentPage - 1)}>
                                 <img src={left} />
                             </button>
                         </li>
                         <li className="page-item active">
-                            <button className="page-link pt-0 pb-1" aria-label="Next" disabled={currentPage + 1 == pages} onClick={() => setCurrentPage(currentPage + 1)}>
+                            <button className="page-link pt-0 pb-1 border-0" aria-label="Next" disabled={currentPage + 1 == pages} onClick={() => setCurrentPage(currentPage + 1)}>
                                 <img src={right} />
                             </button>
                         </li>

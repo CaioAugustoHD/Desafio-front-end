@@ -4,7 +4,7 @@
     border-top: 1px solid #EBEBEB;
 }
 
-.shoppingTable tbody tr td:first-child {
+.shoppingTable tbody tr td p:nth-child(2) {
     font-weight: 600;
 }
 
@@ -15,6 +15,8 @@
 .shoppingTable thead tr th {
     background-color: #FFF;
     padding: 10px;
+    border-bottom: 1px solid #EBEBEB;
+    border-top: 1px solid #EBEBEB;
 }
 
 .shoppingTable tr th, .shoppingTable tr td {

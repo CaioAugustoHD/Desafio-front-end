@@ -6,6 +6,10 @@ html, body, #root {
 
 $font-family-base: 'Nunito', sans-serif;
 $font-size-base: 1rem;
+
 $primary: #E83737;
+
+$border-radius: 6px;
+$border-radius-sm: 4px;
 
 @import "../node_modules/bootstrap/scss/bootstrap";

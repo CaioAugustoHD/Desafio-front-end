@@ -36,7 +36,7 @@ export function ProductModal(props: ProductModalProps) {
                                 </div>
                                 <div className="col-6 d-flex flex-column justify-content-between align-items-end fw-bold" style={{ color: "#696969" }}>
                                     <span className="py-1 px-3 rounded" style={{ backgroundColor: "#D4D4D4" }}>Obrigatório</span>
-                                    <span>{props.product.price}</span>
+                                    <span>{format(props.product.price)}</span>
                                 </div>
                             </div>
                             <Table product={props.product} />
@@ -46,7 +46,7 @@ export function ProductModal(props: ProductModalProps) {
                                     <span className="fw-bold" style={{ color: "#2c9a44" }}>{format(sumCart())}</span>
                                 </div>
                                 <div className="d-flex justify-content-evenly align-items-center py-4">
-                                    <button className="btn btn-primary text-white col-10 py-3" data-bs-dismiss="modal" aria-label="Close">
+                                    <button className="btn btn-primary text-white col-10 py-3 border-0 rounded-1" data-bs-dismiss="modal" aria-label="Close">
                                         Adicionar
                                     </button>
                                 </div>

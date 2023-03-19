@@ -21,7 +21,7 @@ export function ProductsTable() {
                     return <tr key={product.orderId+product.id}>
                         <td id={product.orderId.toString()} scope="row">
                             <p>{product.name}</p>
-                            {product.details}
+                            <p>{product.details}</p>
                         </td>
                         <td>{format(product.price)}</td>
                         <td><Counter cartProduct={product} isCart={true} /></td>

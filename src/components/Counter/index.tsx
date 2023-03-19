@@ -56,7 +56,7 @@ export function Counter(props: CounterProps) {
                         setQuantity(q) 
                     }                
                 }}
-                className="btn btn-sm p-0 rounded-circle"
+                className="btn btn-sm p-0 rounded-circle border-0"
                 style={{
                     backgroundColor: "#D9D9D9",
                     color: "#696969",
@@ -82,7 +82,7 @@ export function Counter(props: CounterProps) {
                         setQuantity(q)
                     }                 
                 }}
-                className="btn btn-sm btn-primary p-0 rounded-circle"
+                className="btn btn-sm btn-primary p-0 rounded-circle border-0"
                 style={{
                     color: "#FFF",
                     height: "22px",

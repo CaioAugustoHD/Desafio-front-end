@@ -33,11 +33,11 @@ export function Saldo() {
                 <span className="fw-bold" style={{ color: "#2c9a44" }}>{format(sumCart())}</span>
             </div>
             <div className="d-flex justify-content-evenly align-items-center" style={buttonsContainerStyle}>
-                <button type="button" className="btn btn-primary text-white col-4 py-3" data-bs-toggle="modal" data-bs-target="#formModal">
+                <button type="button" className="btn btn-primary text-white col-4 py-3 border-0 rounded-1" data-bs-toggle="modal" data-bs-target="#formModal">
                     <img style={imgStyle} src={check} />
                     Finalizar
                 </button>
-                <button style={buttonCancelar} className="btn btn-outline-primary col-4 py-3">
+                <button style={buttonCancelar} className="btn btn-outline-primary col-4 py-3 rounded-1">
                     <img style={imgStyle} src={x} />
                     Cancelar
                 </button>

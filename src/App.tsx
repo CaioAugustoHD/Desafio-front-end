@@ -28,7 +28,7 @@ export function App() {
           <Footer />
         </div>
         {matches ?
-          <div className="col-4 ps-0 bg-white h-100">
+          <div className="col-4 ps-0 bg-white border-white h-100" style={{boxShadow: "0 2.9px 8px 0 rgba(0, 0, 0, 0.08)"}}>
             <Shopping />
           </div>
           : <Shopping />

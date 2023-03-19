@@ -31,7 +31,7 @@ export function Header(props: HeaderProps) {
             <header className="container-fluid bg-white px-md-5 d-flex justify-content-between align-items-center border border-white" style={headerStyle}>
                 <div className="d-flex align-items-center h-100 col-7" role="search">
                     <input 
-                        className="form-control searchInput rounded-0 rounded-start py-2 px-3"
+                        className="form-control searchInput rounded-0 rounded-start-1 py-2 px-3"
                         onKeyUp={(e) => { e.code === "Enter" && search()}}
                         style={inputStyle}
                         type="text"
@@ -39,7 +39,7 @@ export function Header(props: HeaderProps) {
                         aria-label="Search"
                     />
                     <button 
-                        className="btn btn-primary rounded-0 rounded-end d-flex justify-content-center align-items-center"
+                        className="btn btn-primary border-0 rounded-0 rounded-end-1 d-flex justify-content-center align-items-center"
                         onClick={search}
                         style={buttomStyle} 
                         type="button"
