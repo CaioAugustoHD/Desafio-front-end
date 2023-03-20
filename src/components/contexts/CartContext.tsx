@@ -16,6 +16,7 @@ interface defaultType {
   format(price: number): string;
   increaseQuantity(selectedProduct: ProductType): number;
   sumCart(): number;
+  clearCart(): void;
 }
 
 const DEFAULT_VALUE = {
@@ -24,7 +25,8 @@ const DEFAULT_VALUE = {
   cartProducts: [],
   format: () => "",
   increaseQuantity: () => 0,
-  sumCart: () => 0
+  sumCart: () => 0,
+  clearCart: () => {}
 };
 
 export const CartContext = createContext<defaultType>(DEFAULT_VALUE);
@@ -112,6 +114,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
     return sum;
   }
 
+  function clearCart() {
+    setCartProducts([]);
+  }
+
   return (
     <CartContext.Provider
       value={{
@@ -120,7 +126,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
         cartProducts,
         format,
         increaseQuantity,
-        sumCart
+        sumCart,
+        clearCart
       }}
     >
       {children}

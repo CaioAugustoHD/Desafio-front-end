@@ -1,8 +1,9 @@
 import axios from "axios";
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import { useForm } from "react-hook-form";
 import "./style.css";
 import successImg from "../../../assets/successImg.png";
+import { CartContext } from "../../contexts/CartContext";
 
 interface submitDataType {
   bairroInput: string;
@@ -22,6 +23,8 @@ export function FormModal() {
     setFocus,
     formState: { errors }
   } = useForm();
+
+  const { clearCart } = useContext(CartContext);
 
   const closeModalButtomRef = useRef<HTMLButtonElement>(null);
 
@@ -72,6 +75,7 @@ export function FormModal() {
       } else {
         console.log("O SUBMIT PARA A API");
         closeModalButtomRef.current?.click();
+        clearCart();
         clearForm();
       }
     } catch {
