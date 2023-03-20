@@ -1,30 +1,32 @@
 .modalTable {
-    color: #696969 !important; 
-    font-weight: 700;
-    font-size: 13px;
-    border-top: 1px solid #EBEBEB;
+  color: #696969 !important;
+  font-weight: 700;
+  font-size: 13px;
+  border-top: 1px solid #ebebeb;
 }
 
 .modalTable tbody tr td:first-child {
-    font-weight: 600;
+  font-weight: 600;
 }
 
-.modalTable tr:nth-child(odd){
-    background-color: #F9F9F9;
+.modalTable tr:nth-child(odd) {
+  background-color: #f9f9f9;
 }
 
 .modalTable thead tr th {
-    background-color: #FFF;
+  background-color: #fff;
 }
 
-.modalTable tr th, .modalTable tr td {
-    padding: 20px 10px;
+.modalTable tr th,
+.modalTable tr td {
+  padding: 20px 10px;
 }
 
 .modalTable tr td p {
-    margin: 0;
+  margin: 0;
 }
 
-.modalTable tr th:last-child, .modalTable tr td:last-child {
-    text-align: end;
+.modalTable tr th:last-child,
+.modalTable tr td:last-child {
+  text-align: end;
 }

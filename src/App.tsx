@@ -6,8 +6,7 @@ import { Menu } from "./components/Menu";
 import { Shopping } from "./components/Shopping";
 
 export function App() {
-
-  const [searchProducts, setSearchProducts] = useState('')
+  const [searchProducts, setSearchProducts] = useState("");
 
   const [matches, setMatches] = useState(
     window.matchMedia("(min-width: 992px)").matches
@@ -16,7 +15,7 @@ export function App() {
   useEffect(() => {
     window
       .matchMedia("(min-width: 992px)")
-      .addEventListener('change', e => setMatches(e.matches));
+      .addEventListener("change", (e) => setMatches(e.matches));
   }, []);
 
   return (
@@ -27,13 +26,17 @@ export function App() {
           <Menu searchProducts={searchProducts} />
           <Footer />
         </div>
-        {matches ?
-          <div className="col-4 ps-0 bg-white border-white h-100" style={{boxShadow: "0 2.9px 8px 0 rgba(0, 0, 0, 0.08)"}}>
+        {matches ? (
+          <div
+            className="col-4 ps-0 bg-white border-white h-100"
+            style={{ boxShadow: "0 2.9px 8px 0 rgba(0, 0, 0, 0.08)" }}
+          >
             <Shopping />
           </div>
-          : <Shopping />
-        }
+        ) : (
+          <Shopping />
+        )}
       </div>
     </CartProvider>
-  )
+  );
 }
