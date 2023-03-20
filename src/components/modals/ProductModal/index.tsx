@@ -40,7 +40,7 @@ export function ProductModal(props: ProductModalProps) {
               <img
                 className="img-fluid rounded-top"
                 src={props.product.image}
-                style={{ objectFit: "cover" }}
+                style={{ width: "100%" }}
               />
             </div>
             <div className="col-lg-5 pt-5 px-5">
