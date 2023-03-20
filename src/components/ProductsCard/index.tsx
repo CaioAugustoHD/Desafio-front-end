@@ -1,19 +1,42 @@
 import { useContext, useEffect, useState } from "react";
-import products from "../../../products.json";
 import { Card } from "./Card";
 
 import right from "../../assets/right.svg";
 import left from "../../assets/left.svg";
 import { ProductModal } from "../modals/ProductModal";
 import { ModalDataContext } from "../contexts/ModalDataContext";
+import axios from "axios";
 
 interface ProductsCardProps {
   productsCategory: number;
   searchProducts: string;
 }
 
+interface ApiResponseType {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  image: string;
+  category_id: number;
+}
+
+const apiUrl = "http://localhost:3000/";
+
 export function ProductsCard(props: ProductsCardProps) {
-  const { modalData, setModalData } = useContext(ModalDataContext);
+  const [apiResponse, setApiResponse] = useState<ApiResponseType[]>([]);
+
+  async function apiFetch() {
+    try {
+      const response = axios.get(apiUrl + "products");
+      const data = (await response).data;
+      setApiResponse(data);
+    } catch {
+      console.log("Falha no fetch");
+    }
+  }
+
+  const { modalData } = useContext(ModalDataContext);
 
   const [matchesMD, setMatchesMD] = useState(
     window.matchMedia("(min-width: 768px)").matches
@@ -25,8 +48,8 @@ export function ProductsCard(props: ProductsCardProps) {
 
   const selectedCategory =
     props.productsCategory == 0
-      ? products.products
-      : products.products.filter(
+      ? apiResponse
+      : apiResponse.filter(
           (product) => product.category_id == props.productsCategory
         );
 
@@ -41,7 +64,6 @@ export function ProductsCard(props: ProductsCardProps) {
   const startIndex = currentPage * itensPerPage;
   const endIndex = startIndex + itensPerPage;
   const currentItens = filteredProducts.slice(startIndex, endIndex);
-  console.log("tem ", pages, " paginas e eu to na ", currentPage + 1);
 
   useEffect(() => {
     setCurrentPage(0);
@@ -57,6 +79,10 @@ export function ProductsCard(props: ProductsCardProps) {
     window
       .matchMedia("(min-width: 576px)")
       .addEventListener("change", (e) => setMatchesSM(e.matches));
+  }, []);
+
+  useEffect(() => {
+    apiFetch();
   }, []);
 
   return (

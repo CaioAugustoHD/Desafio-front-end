@@ -147,5 +147,31 @@
       "cep": "12345-678",
       "valor_total": 13
     }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Hambúrgueres"
+    },
+    {
+      "id": 2,
+      "name": "Refrigerantes"
+    },
+    {
+      "id": 3,
+      "name": "Pizzas"
+    },
+    {
+      "id": 4,
+      "name": "Combo lanche"
+    },
+    {
+      "id": 5,
+      "name": "Sucos"
+    },
+    {
+      "id": 6,
+      "name": "Açais"
+    }
   ]
 }
