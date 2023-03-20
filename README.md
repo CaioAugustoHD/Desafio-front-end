@@ -1,9 +1,10 @@
 <h1 align="center">Desafio front end</h1>
 <h4 align="center">Feito com React.js e Bootstrap</h4>
 
- &#xa0;
+&#xa0;
 
 **<p align="center">Sumário</p>**
+
 <p align="center">
 <a href="#dart-sobre">Sobre</a> &#xa0; | &#xa0;
 <a href="#white_check_mark-funcionalidades">Funcionalidades</a> &#xa0; | &#xa0;
@@ -17,19 +18,18 @@
 <a href="#sparkles-autor">Autor</a>
 </p>
 
- &#xa0;
- 
-## :dart: Sobre
-<p>O objetivo do projeto foi desenvolver um projeto seguindo uma lista de requisitos, para participar do processo seletivo de Desenvolvedor Front End na <a href="https://privatecode.com.br/">Private Code</a>.</p>
-<p>Se trata de um sistema de delivery, onde o usuário pode visualizar os produtos, adicioná-los no carrinho e concluir o seu pedido.</p>
+&#xa0;
 
+## :dart: Sobre
+
+<p>O objetivo foi desenvolver um projeto seguindo uma lista de requisitos, para participar do processo seletivo de Desenvolvedor Front End na <a href="https://privatecode.com.br/">Private Code</a>.</p>
+<p>Se trata de um sistema de delivery, onde o usuário pode visualizar os produtos, adicioná-los no carrinho e concluir o seu pedido.</p>
 
 &#xa0;
 
 ## :white_check_mark: Funcionalidades
-As principais funcionalidades do projeto são:
 
-✔️ Réplica do layout disponibilizado no Figma;
+As principais funcionalidades do projeto são:
 
 ✔️ Permitir o usuário separar e listar os produtos por categoria;
 
@@ -37,7 +37,7 @@ As principais funcionalidades do projeto são:
 
 ✔️ Adicionar determinado produto ao carrinho;
 
-✔️ Permitir aumentar a quantidade de um produto que já está no carrinho; 
+✔️ Permitir aumentar a quantidade de um produto que já está no carrinho;
 
 ✔️ Permitir remover determinado produto do carrinho;
 
@@ -49,58 +49,66 @@ As principais funcionalidades do projeto são:
 
 ✔️ Enviar os dados do pedido para a API (json server);
 
+✔️ Réplica do layout disponibilizado no Figma;
+
 ✔️ Aplicação responsiva.
 
 &#xa0;
 
 ## :computer: Tecnologias
-* [HTML](https://developer.mozilla.org/pt-BR/docs/Web/HTML)
 
-* [CSS](https://developer.mozilla.org/pt-BR/docs/Web/CSS)
+- [HTML](https://developer.mozilla.org/pt-BR/docs/Web/HTML)
 
-* [Bootstrap](https://getbootstrap.com/)
+- [CSS](https://developer.mozilla.org/pt-BR/docs/Web/CSS)
 
-* [SASS](https://sass-lang.com/) (Configuração Bootstrap)
+- [Bootstrap](https://getbootstrap.com/)
 
-* [TypeScript](https://www.typescriptlang.org/)
+- [SASS](https://sass-lang.com/) (Configuração Bootstrap)
 
-* [React.js](https://pt-br.reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
 
-* [React Hook Form](https://react-hook-form.com/)
+- [React.js](https://pt-br.reactjs.org/)
 
-* [Swiper](https://swiperjs.com/)
+- [React Hook Form](https://react-hook-form.com/)
 
-* [Axios](https://axios-http.com/)
+- [Swiper](https://swiperjs.com/)
 
-* [Vite](https://vitejs.dev/)
+- [Axios](https://axios-http.com/)
 
-* [JSON server](https://github.com/typicode/json-server)
+- [Vite](https://vitejs.dev/)
+
+- [JSON server](https://github.com/typicode/json-server)
 
 &#xa0;
 
 ## :hammer_and_wrench: Serviços
-* <a href="https://github.com/">GitHub</a>
 
-* <a href="https://fonts.google.com/">Google Fonts </a>- importação da fonte
+- <a href="https://github.com/">GitHub</a>
 
+- <a href="https://fonts.google.com/">Google Fonts </a>- importação da fonte
+
+- <a href="https://viacep.com.br/">ViaCEP </a>- API de CEP
 
 &#xa0;
 
 ## :camera: Imagens
+
 **<p align="center">Funcionamento do projeto:</p>**
+
 <div align="center">
   <img src="public/exemploprojeto.gif" alt="Funcionamento do projeto">
 </div>
 
-**<p align="center"></p>**
-<div align="center">
-  <img src="public/" alt="">
-</div>
+**<p align="center">Versão mobile:</p>**
 
+<div align="center">
+  <img src="public/mobile.gif" alt="Versão mobile do projeto">
+</div>
 
 &#xa0;
 
 ## :scroll: Rodando o projeto
+
 É necessário um navegador e um editor de código (recomendado vs code)
 
 ```bash
@@ -125,7 +133,8 @@ $ npm run dev
 &#xa0;
 
 ## :link: Links
-* Repositório: https://github.com/CaioAugustoHD/Desafio-front-end
+
+- Repositório: https://github.com/CaioAugustoHD/Desafio-front-end
 
 &#xa0;
 
