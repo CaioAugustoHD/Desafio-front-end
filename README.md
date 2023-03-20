@@ -9,11 +9,12 @@
 <a href="#dart-sobre">Sobre</a> &#xa0; | &#xa0;
 <a href="#white_check_mark-funcionalidades">Funcionalidades</a> &#xa0; | &#xa0;
 <a href="#computer-tecnologias">Tecnologias</a> &#xa0; | &#xa0;
-<a href="#hammer_and_wrench-serviços">Serviços</a>
+<a href="#hammer_and_wrench-serviços">Serviços</a> &#xa0; | &#xa0;
+<a href="#camera-imagens">Imagens</a>
 </p>
 <p align="center">
-<a href="#camera-imagens">Imagens</a> &#xa0; | &#xa0;
 <a href="#scroll-rodando-o-projeto">Rodando o projeto</a> &#xa0; | &#xa0;
+<a href="#orange_book-como-usar">Como usar</a> &#xa0; | &#xa0;
 <a href="#link-links">Links</a> &#xa0; | &#xa0;
 <a href="#sparkles-autor">Autor</a>
 </p>
@@ -99,6 +100,12 @@ As principais funcionalidades do projeto são:
   <img src="public/exemploprojeto.gif" alt="Funcionamento do projeto">
 </div>
 
+**<p align="center">Adicionando um produto ao carrinho:</p>**
+
+<div align="center">
+  <img src="public/modal.png" alt="Versão mobile do projeto">
+</div>
+
 **<p align="center">Versão mobile:</p>**
 
 <div align="center">
@@ -121,14 +128,28 @@ $ cd Desafio-front-end
 # Instale as dependências
 $ npm init
 
-# Inicie o JSON server (a API ficará ativa em http://localhost:3000)
+# Instale o pacote json-server
+$ npm install -g json-server
+
+# Inicie o json-server (a API ficará ativa em http://localhost:3000)
 $ npx json-server --watch db.json
 
-# Inicie o projeto
+# Em um outro terminal, inicie o projeto
 $ npm run dev
 
 # O projeto ficará ativo em http://127.0.0.1:5173/
 ```
+
+⚠️ Sem a API ativa, o projeto não funcionará corretamente!
+
+&#xa0;
+
+## :orange_book: Como usar
+
+<p>Depois de seguir os passos anteriores e a aplicação estiver em execução, chegou a hora de escolher suas comidas favoritas. Você pode pesquisar por determinado produto ou listar por categorias, utilizando a barra de pesquisa e o menu de navegação, respectivamente.</p>
+<p>Ao clicar em algum produto, será exibido um modal com o preço e a opcão de adicionar ao carrinho.</p>
+<p>No carrinho, todos seus produtos adicionados são exibidos. Você ainda tem a opção de aumentar sua quantidade ou removê-lo. Também é possível visualizar em tempo real o valor total da sua compra.</p>
+<p>Para confirmar seu pedido, clique no botão "Finalizar". Será exibido para você um formulário, onde deve preenchê-lo utilizando um <strong>CEP válido</strong>. Caso seja inválido, o formulário acusará um erro e seu pedido não poderá ser realizado. Mas caso ocorra tudo certo, uma mensagem será mostrada, indicando que seu pedido foi realizado.</p>
 
 &#xa0;
 
