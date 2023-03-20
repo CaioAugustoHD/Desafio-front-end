@@ -15,6 +15,8 @@ interface submitDataType {
   refInput: string;
 }
 
+const apiUrl = "http://localhost:3000/";
+
 export function FormModal() {
   const {
     setValue,
@@ -24,7 +26,7 @@ export function FormModal() {
     formState: { errors }
   } = useForm();
 
-  const { clearCart } = useContext(CartContext);
+  const { clearCart, cartProducts, sumCart } = useContext(CartContext);
 
   const closeModalButtomRef = useRef<HTMLButtonElement>(null);
 
@@ -63,7 +65,6 @@ export function FormModal() {
   }
 
   async function onSubmit(submitData: submitDataType) {
-    console.log("ENVIADO p validar", submitData);
     try {
       const response = await axios.get(
         `https://viacep.com.br/ws/${Number(submitData.cepInput)}/json/`
@@ -73,13 +74,45 @@ export function FormModal() {
         alert("CEP não encontrado");
         setFocus("cepInput");
       } else {
-        console.log("O SUBMIT PARA A API");
+        postToApi(submitData);
         closeModalButtomRef.current?.click();
         clearCart();
         clearForm();
       }
     } catch {
       alert("CEP não encontrado");
+    }
+  }
+
+  async function postToApi(submitData: submitDataType) {
+    const copyProducts = [...cartProducts];
+    const total = sumCart();
+
+    for (let i = 0; i < copyProducts.length; i++) {
+      copyProducts[i].quantidade = copyProducts[i].quantity;
+      copyProducts[i].valor = copyProducts[i].price;
+      copyProducts[i].detalhes = copyProducts[i].details;
+      delete copyProducts[i].orderId;
+      delete copyProducts[i].name;
+      delete copyProducts[i].details;
+      delete copyProducts[i].quantity;
+      delete copyProducts[i].price;
+    }
+    try {
+      const data = {
+        produtos: copyProducts,
+        cidade: submitData.cidadeInput,
+        estado: submitData.estadoInput,
+        bairro: submitData.bairroInput,
+        complemento: submitData.complementoInput,
+        referencia: submitData.refInput,
+        numero: submitData.numeroInput,
+        cep: submitData.cepInput,
+        valor_total: total
+      };
+      await axios.post(apiUrl + "pedidos", data);
+    } catch {
+      alert("Erro! Pedido não realizado");
     }
   }
 
