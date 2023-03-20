@@ -126,9 +126,9 @@ $ git clone https://github.com/CaioAugustoHD/Desafio-front-end
 $ cd Desafio-front-end
 
 # Instale as dependências
-$ npm init
+$ npm install
 
-# Instale o pacote json-server
+# Você pode instalar o pacote json-server
 $ npm install -g json-server
 
 # Inicie o json-server (a API ficará ativa em http://localhost:3000)
