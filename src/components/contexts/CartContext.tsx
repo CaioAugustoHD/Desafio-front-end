@@ -93,9 +93,13 @@ export function CartProvider({ children }: { children: ReactNode }) {
         product.id === selectedProduct.id
     );
 
-    item && item.quantity + 1;
-    setCartProducts(copyCartProducts);
-    return item?.quantity + 1;
+    if (item) {
+      item.quantity + 1;
+      setCartProducts(copyCartProducts);
+      return item?.quantity + 1;
+    } else {
+      return 0;
+    }
   }
 
   function format(price: number) {

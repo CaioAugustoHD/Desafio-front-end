@@ -1,11 +1,14 @@
 import searchIcon from "../../assets/searchIcon.svg";
 import cart from "../../assets/cart.svg";
+import { useRef } from "react";
 
 interface HeaderProps {
   setSearchProducts: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export function Header(props: HeaderProps) {
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
   const headerStyle = {
     height: "90px",
     boxShadow: "0 2.6px 7.25px rgba(0, 0, 0, .08) "
@@ -23,8 +26,9 @@ export function Header(props: HeaderProps) {
   };
 
   function search() {
-    const searchInput = document.querySelector(".searchInput");
-    props.setSearchProducts(searchInput?.value);
+    searchInputRef.current?.value
+      ? props.setSearchProducts(searchInputRef.current?.value)
+      : props.setSearchProducts("");
   }
 
   return (
@@ -38,6 +42,7 @@ export function Header(props: HeaderProps) {
           onKeyUp={(e) => {
             e.code === "Enter" && search();
           }}
+          ref={searchInputRef}
           style={inputStyle}
           type="text"
           placeholder="Pesquisar..."

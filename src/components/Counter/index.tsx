@@ -18,20 +18,13 @@ interface CounterProps {
   };
 }
 
-//                   TIPAR FUNÇÃO
-interface DataType {
-  details: string;
-  orderId: number;
-  quantity: number;
-}
-
 export function Counter(props: CounterProps) {
   const { addItemsToCart, removeItemsToCart, increaseQuantity } =
     useContext(CartContext);
   const [quantity, setQuantity] = useState(props.isCart ? 1 : 0);
 
   function productDetails(e) {
-    const details =
+    const details: string =
       e.target.parentElement.parentElement.parentElement.children[0].lastChild
         .textContent;
     const orderId = Number(
@@ -42,7 +35,7 @@ export function Counter(props: CounterProps) {
   }
 
   useEffect(() => {
-    setQuantity(props.isCart ? props.cartProduct?.quantity : quantity);
+    setQuantity(props.cartProduct ? props.cartProduct?.quantity : quantity);
   }, [props]);
 
   return (
@@ -50,12 +43,14 @@ export function Counter(props: CounterProps) {
       <button
         onClick={(e) => {
           if (props.cartProduct) {
-            const q = removeItemsToCart(props.cartProduct);
-            setQuantity(q);
+            const newQuantity = removeItemsToCart(props.cartProduct);
+            setQuantity(newQuantity);
           } else {
             const data = productDetails(e);
-            const q = removeItemsToCart(Object.assign(props.newProduct, data));
-            setQuantity(q);
+            const newQuantity = removeItemsToCart(
+              Object.assign(props.newProduct, data)
+            );
+            setQuantity(newQuantity);
           }
         }}
         className="btn btn-sm p-0 rounded-circle border-0"

@@ -13,7 +13,7 @@ export function Shopping() {
     <>
       <div
         className="offcanvas-lg offcanvas-end  h-100 p-0"
-        tabIndex="-1"
+        tabIndex={-1}
         id="offcanvasResponsive"
         aria-labelledby="offcanvasResponsiveLabel"
       >

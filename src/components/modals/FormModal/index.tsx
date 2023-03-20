@@ -121,7 +121,7 @@ export function FormModal() {
       <div
         className="modal fade"
         id="formModal"
-        tabIndex="-1"
+        tabIndex={-1}
         aria-labelledby="formModalLabel"
         aria-hidden="true"
       >

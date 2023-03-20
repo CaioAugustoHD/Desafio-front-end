@@ -20,7 +20,7 @@ export function ProductModal(props: ProductModalProps) {
     <div
       className="modal fade"
       id="productModal"
-      tabIndex="-1"
+      tabIndex={-1}
       aria-labelledby="productModalLabel"
       aria-hidden="true"
     >
